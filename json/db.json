@@ -1,0 +1,61 @@
+{
+  "beta_users": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "Ana Smith",
+      "verified_instructor": false,
+      "created_at": "2011-09-10 14:44:24 UTC",
+      "updated_at": "2016-08-03 14:44:24 UTC",
+      "email": "anasmith@mail.com",
+      "encrypted_password": "$2a$10$QMdlaNQVIVzI/ZCAmgb8QeUSjtuc4AWMIUwk2fXCtps9/k6KMttAO"
+    },
+    {
+      "id": 2,
+      "name": "Josh Yamada",
+      "verified_instructor": true,
+      "created_at": "2011-09-10 14:44:24 UTC",
+      "updated_at": "2016-08-03 14:44:24 UTC",
+      "encrypted_password": "$2a$10$QMdlaNQVIVzI/ZCAmgb8QeUSjtuc4AWMIUwk2fXCtps9/k6KMttAO"
+    },
+    {
+      "id": 3,
+      "name": "Daniel Goeth",
+      "verified_instructor": false,
+      "created_at": "2011-09-10 14:44:24 UTC",
+      "updated_at": "2016-08-03 14:44:24 UTC",
+      "encrypted_password": "$2a$10$QMdlaNQVIVzI/ZCAmgb8QeUSjtuc4AWMIUwk2fXCtps9/k6KMttAO"
+    },
+    {
+      "id": 4,
+      "name": "Allen Smith",
+      "verified_instructor": true,
+      "created_at": "2011-09-10 14:44:24 UTC",
+      "updated_at": "2016-08-03 14:44:24 UTC",
+      "encrypted_password": "$2a$10$QMdlaNQVIVzI/ZCAmgb8QeUSjtuc4AWMIUwk2fXCtps9/k6KMttAO"
+    }
+  ],
+  "lessons": [],
+  "lesson_times": [],
+  "students": [
+    { "id": 1, "name": "Ashley Morgan", "age_range": "under 10", "gender": "Female", "lesson_history": "something", "experience": "none", "relationship_to_requester": "n/a" }
+  ],
+  "instructors": [
+    {
+      "id": 1,
+      "first_name": "Allen",
+      "last_name": "Smith",
+      "username": "allensmith",
+      "certification": "something",
+      "phone_number": "123-456-7890",
+      "preferred_resorts": "None",
+      "sport": "Ski",
+      "bio": "I love to ski!",
+      "intro": "Hey guys!",
+      "status": "Active",
+      "user_id": 4,
+      "created_at": "2011-09-10 14:44:24 UTC",
+      "updated_at": "2016-08-03 14:44:24 UTC"
+    }
+  ]
+}
