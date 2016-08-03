@@ -17,7 +17,7 @@ class SnowSchoolers extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to Snow Schoolers!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color: 'blue',
+    fontWeight: 'bold',
   },
   instructions: {
     textAlign: 'center',
