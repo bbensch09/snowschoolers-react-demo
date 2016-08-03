@@ -48,3 +48,21 @@ react-native run-ios
 ```
 
 Note the entry-point of the app is in the file `index.ios.js`.
+
+#### Issues
+
+##### node_modules/ directory
+
+Because the `node_modules/` directory is not tracked by git, you might need to call the following command to install all node dependencies:
+
+```
+npm install
+```
+
+##### Runtime Server Not Starting
+
+In case your react packager terminal window is not running, do the following:
+
+```
+npm start
+```
