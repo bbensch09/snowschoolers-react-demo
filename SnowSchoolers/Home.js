@@ -27,6 +27,18 @@ class Home extends Component {
           </Text>
         </TouchableOpacity>
 
+        <TouchableOpacity onPress={() => this._navigate('updatelesson')}>
+          <Text>
+            Update Lesson
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this._navigate('lessondetails')}>
+          <Text>
+            Lesson Details
+          </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={this._onPressNotFound.bind(this)}>
           <Text>
             Not Found
