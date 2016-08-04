@@ -18,6 +18,7 @@ import Home from './Home';
 import BookLesson from './BookLesson';
 import UpdateLesson from './UpdateLesson';
 import LessonDetails from './LessonDetails';
+import WhatsNext from './WhatsNext';
 import NotFound from './NotFound';
 
 class SnowSchoolers extends Component {
@@ -40,6 +41,10 @@ class SnowSchoolers extends Component {
 
       case 'lessondetails':
         component = <LessonDetails navigator={navigator} style={styles} />
+        break;
+
+      case 'whatsnext':
+        component = <WhatsNext navigator={navigator} style={styles} />
         break;
 
       case 'notfound':

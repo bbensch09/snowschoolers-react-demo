@@ -49,6 +49,12 @@ class Home extends Component {
             </Text>
           </TouchableOpacity>
 
+          <TouchableOpacity onPress={() => this._navigate('whatsnext')}>
+            <Text>
+              Whats Next
+            </Text>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={this._onPressNotFound.bind(this)}>
             <Text>
               Not Found
