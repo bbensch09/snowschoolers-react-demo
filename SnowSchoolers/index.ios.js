@@ -9,28 +9,48 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator,
 } from 'react-native';
 
+// Require all custom component views here
+import Home from './Home';
+import BookLesson from './BookLesson';
+import NotFound from './NotFound';
+
 class SnowSchoolers extends Component {
+  // Define all the routes
+  renderScene(route, navigator) {
+    var component;
+
+    switch(route.id) {
+      case 'home':
+        component = <Home navigator={navigator} style={styles} />
+        break;
+
+      case 'booklesson':
+        component = <BookLesson navigator={navigator} style={styles} />
+        break;
+
+      case 'notfound':
+      default:
+        component = <NotFound navigator={navigator} style={styles} />
+    }
+
+    return component;
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Snow Schoolers!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={{ title: 'SnowSchoolers', id: 'home' }}
+        renderScene={this.renderScene}
+      />
     );
   }
 }
 
+// Global styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
