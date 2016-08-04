@@ -16,6 +16,7 @@ import {
 // Require all custom component views here
 import Home from './Home';
 import BookLesson from './BookLesson';
+import UpdateLesson from './UpdateLesson';
 import NotFound from './NotFound';
 
 class SnowSchoolers extends Component {
@@ -30,6 +31,10 @@ class SnowSchoolers extends Component {
 
       case 'booklesson':
         component = <BookLesson navigator={navigator} style={styles} />
+        break;
+
+      case 'updatelesson':
+        component = <UpdateLesson navigator={navigator} style={styles} />
         break;
 
       case 'notfound':
