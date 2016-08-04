@@ -62,12 +62,14 @@ class SnowSchoolers extends Component {
 
 // Global styles
 const styles = StyleSheet.create({
+  // parent container for all the views
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    //backgroundColor: '#F5FCFF',
   },
+  // home page welcome message
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -75,6 +77,7 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
   },
+  // home page instructions
   instructions: {
     textAlign: 'center',
     color: '#333333',
