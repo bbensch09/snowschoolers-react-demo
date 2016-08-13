@@ -25,7 +25,7 @@ class BookLesson extends Component {
     var debugState = [];
     for (var key in this.state) {
       debugState.push(
-        <Text>{key}: {this.state[key]}{"\n"}</Text>
+        <Text key={key}>{key}: {this.state[key]}{"\n"}</Text>
       );
     }
     return debugState;
