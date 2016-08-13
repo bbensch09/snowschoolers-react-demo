@@ -21,13 +21,18 @@ class BookLesson extends Component {
   _onPressGoBack() {
     this.props.navigator.pop();
   }
-  render() {
+  _getDebugState() {
     var debugState = [];
     for (var key in this.state) {
       debugState.push(
         <Text>{key}: {this.state[key]}{"\n"}</Text>
       );
     }
+    return debugState;
+  }
+  render() {
+    // Use this to display the state on the screen with Text components
+    var debugState = this._getDebugState();
 
     return (
       <View style={this.props.style.container}>
