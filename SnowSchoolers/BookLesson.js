@@ -46,8 +46,17 @@ class BookLesson extends Component {
       })
     }).then((response) => response.json())
     .then((responseJson) => {
+      console.log(responseJson);
+
+      // the fake backend returns back the object with id included of the
+      // from the thing you have just submitted
+      var newLessonId = responseJson.id;
+
       this.props.navigator.push({
-        id: 'updatelesson'
+        id: 'updatelesson',
+        passProps: {
+          lessonId: newLessonId, // pass the lesson id to the next component via props
+        }
       });
     })
     .catch((error) => {
