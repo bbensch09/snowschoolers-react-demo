@@ -31,7 +31,7 @@ class BookLesson extends Component {
     return debugState;
   }
   _onPressSubmit() {
-
+    console.log("making POST req to make lesson. . . ");
     fetch('http://localhost:3000/lessons', {
       method: 'POST',
       headers: {
@@ -104,7 +104,7 @@ class BookLesson extends Component {
             onChangeText={(text) => this.setState({lessonLength: text})}
           />
 
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit}>
+          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit.bind(this)}>
             <Text style={styles.buttonText}>
               Book Lesson
             </Text>
