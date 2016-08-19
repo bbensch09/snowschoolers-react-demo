@@ -36,7 +36,7 @@ class SnowSchoolers extends Component {
         break;
 
       case 'updatelesson':
-        component = <UpdateLesson navigator={navigator} style={styles} />
+        component = <UpdateLesson navigator={navigator} style={styles} {...route.passProps} />
         break;
 
       case 'lessondetails':
