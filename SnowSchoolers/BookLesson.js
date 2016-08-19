@@ -30,6 +30,31 @@ class BookLesson extends Component {
     }
     return debugState;
   }
+  _onPressSubmit() {
+
+    fetch('http://localhost:3000/lessons', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activity: this.state.lessonType,
+        location: this.state.mountain,
+        lesson_time_id: 1,
+        instructor_id: 1
+      })
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      this.props.navigator.push({
+        id: 'updatelesson'
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  }
   render() {
     // Use this to display the state on the screen with Text components
     var debugState = this._getDebugState();
@@ -79,9 +104,7 @@ class BookLesson extends Component {
             onChangeText={(text) => this.setState({lessonLength: text})}
           />
 
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={() => this.props.navigator.push({
-            id: 'updatelesson'
-          })}>
+          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit}>
             <Text style={styles.buttonText}>
               Book Lesson
             </Text>
