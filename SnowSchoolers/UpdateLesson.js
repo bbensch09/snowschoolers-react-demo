@@ -28,6 +28,29 @@ class UpdateLesson extends Component {
   _onPressGoBack() {
     this.props.navigator.pop();
   }
+  componentWillMount() {
+    console.log(this.props);
+    var lessonId = this.props.lessonId;
+    // if no lesson id was given, set it to 1
+    if (!lessonId) { lessonId = 1; }
+
+    fetch('http://localhost:3000/lessons/' + lessonId)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        // Update the state to reflect the data in the backend
+        this.setState({
+          lessonType: responseJson.activity,
+          mountain: responseJson.location,
+          lessonDate: "2016-08-18",
+          slot: "Morning"
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   render() {
     return (
       <View style={this.props.style.container}>
