@@ -28,6 +28,64 @@ class UpdateLesson extends Component {
   _onPressGoBack() {
     this.props.navigator.pop();
   }
+  componentWillMount() {
+    console.log(this.props);
+    var lessonId = this.props.lessonId;
+    // if no lesson id was given, set it to 1
+    if (!lessonId) { lessonId = 1; }
+
+    fetch('http://localhost:3000/lessons/' + lessonId)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        // Update the state to reflect the data in the backend
+        this.setState({
+          lessonType: responseJson.activity,
+          mountain: responseJson.location,
+          lessonDate: "2016-08-18",
+          slot: "Morning"
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  _onPressSubmit() {
+    console.log("UpdateLesson: _onPressSubmit()");
+    // lessonId is passed via props from previous scene
+    // (should it be made into a state property?)
+    var lessonId = this.props.lessonId;
+
+    fetch('http://localhost:3000/lessons/' + lessonId, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activity: this.state.lessonType,
+        location: this.state.mountain,
+        lesson_time_id: 1,
+        ability_level: this.state.lessonLevel,
+        objectives: this.state.lessonObjectives,
+        terms_accepted: this.state.agree,
+        start_time: this.state.startTime,
+        instructor_id: 1,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        this.props.navigator.push({
+          id: 'lessondetails'
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   render() {
     return (
       <View style={this.props.style.container}>
@@ -126,9 +184,7 @@ class UpdateLesson extends Component {
           </View>
 
           {/* Submit Button */}
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnSuccess]} onPress={() => this.props.navigator.push({
-            id: 'lessondetails'
-          })}>
+          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnSuccess]} onPress={this._onPressSubmit.bind(this)}>
             <Text style={styles.buttonText}>
               Submit
             </Text>

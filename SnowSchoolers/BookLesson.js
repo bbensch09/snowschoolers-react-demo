@@ -30,6 +30,40 @@ class BookLesson extends Component {
     }
     return debugState;
   }
+  _onPressSubmit() {
+    console.log("making POST req to make lesson. . . ");
+    fetch('http://localhost:3000/lessons', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        activity: this.state.lessonType,
+        location: this.state.mountain,
+        lesson_time_id: 1,
+        instructor_id: 1
+      })
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+
+      // the fake backend returns back the object with id included of the
+      // from the thing you have just submitted
+      var newLessonId = responseJson.id;
+
+      this.props.navigator.push({
+        id: 'updatelesson',
+        passProps: {
+          lessonId: newLessonId, // pass the lesson id to the next component via props
+        }
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  }
   render() {
     // Use this to display the state on the screen with Text components
     var debugState = this._getDebugState();
@@ -79,9 +113,7 @@ class BookLesson extends Component {
             onChangeText={(text) => this.setState({lessonLength: text})}
           />
 
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={() => this.props.navigator.push({
-            id: 'updatelesson'
-          })}>
+          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit.bind(this)}>
             <Text style={styles.buttonText}>
               Book Lesson
             </Text>
