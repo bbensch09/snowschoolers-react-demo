@@ -4,18 +4,28 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TouchableHighlight,
+  TextInput,
+  Picker,
+  Modal,
+  DatePickerIOS
 } from 'react-native';
 
 class BookLesson extends Component {
   constructor(props) {
     super(props);
 
+    //var timezone = (-1) * (new Date()).getTimezoneOffset() / 6;
+
     this.state = {
       lessonType: "",
       mountain: "",
-      lessonDate: "",
+      lessonDate: new Date().toISOString().slice(0, 10),
       lessonLength: "",
+      modalVisible: false,
+      activeModal: "lessonType",
+      // for the DatePickerIOS component:
+      timeZoneOffsetInHours: ""//timezone
     };
   }
   _onPressGoBack() {
@@ -64,9 +74,66 @@ class BookLesson extends Component {
     });
 
   }
+  setModalVisible(visible, pickerType) {
+    this.setState({ modalVisible: visible, activeModal: pickerType });
+  }
+  onLessonDateChange(lessonDate) {
+    this.setState({lessonDate: lessonDate.toISOString().slice(0, 10)});
+  }
+  onTimezoneChange(event) {
+    var offset = parseInt(event.nativeEvent.text, 10);
+    if (isNaN(offset)) {
+      return;
+    }
+    this.setState({timeZoneOffsetInHours: offset});
+  }
   render() {
     // Use this to display the state on the screen with Text components
     var debugState = this._getDebugState();
+    const items = ["Ski", "Mountain"];
+    var modalPicker;
+
+    if (this.state.activeModal === 'lessonType') {
+      modalPicker =
+      <Picker selectedValue={this.state.lessonType}
+        onValueChange={(lessonType) => this.setState({lessonType})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Ski" value="Ski" />
+        <Picker.Item label="Snowboard" value="Snowboard" />
+      </Picker>
+    }
+    else if (this.state.activeModal === 'mountain') {
+      modalPicker =
+      <Picker selectedValue={this.state.mountain}
+        onValueChange={(mountain) => this.setState({mountain})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Mt. Hotham" value="Mt. Hotham" />
+        <Picker.Item label="Falls Creek" value="Falls Creek" />
+        <Picker.Item label="Mt. Buller" value="Mt. Buller" />
+      </Picker>
+    }
+    else if (this.state.activeModal === 'lessonDate') {
+      modalPicker =
+      <DatePickerIOS
+        date={new Date(this.state.lessonDate)}
+        mode="date"
+        timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+        onDateChange={this.onLessonDateChange.bind(this)}
+      />
+    }
+    else if (this.state.activeModal === 'lessonLength') {
+      modalPicker =
+      <Picker selectedValue={this.state.lessonLength}
+        onValueChange={(lessonLength) => this.setState({lessonLength})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Morning" value="Morning" />
+        <Picker.Item label="Afternoon" value="Afternoon" />
+        <Picker.Item label="Full Day" value="Full Day" />
+      </Picker>
+    }
 
     return (
       <View style={this.props.style.container}>
@@ -84,7 +151,53 @@ class BookLesson extends Component {
           </Text>
         </View>
 
-        <View style={{ flex: 1, backgroundColor: 'cyan', justifyContent: 'center', alignItems: 'stretch' }}>
+        <View style={{ flex: 2, backgroundColor: 'cyan', justifyContent: 'center', alignItems: 'stretch' }}>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}>
+            <Text>Lesson Type: {this.state.lessonType}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}>
+            <Text>Mountain: {this.state.mountain}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}>
+            <Text>Date: {this.state.lessonDate}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLength')}>
+            <Text>Length: {this.state.lessonLength}</Text>
+          </TouchableHighlight>
+
+          <Modal
+            animationType={"slide"}
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => alert("Modal closed")}>
+
+            <View style={styles.modalView}>
+              <View style={styles.modalContent}>
+                <Text style={styles.modalTitle}>Please select an option:</Text>
+
+                {modalPicker}
+
+                <TouchableHighlight style={[styles.button, styles.btnInfo]} onPress={() => { this.setModalVisible(!this.state.modalVisible)}}>
+                  <Text style={styles.buttonText}>OK</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+
+          </Modal>
+
+          {/*
           <TextInput
             style={[styles.inputText, styles.formControl]}
             placeholder="Lesson Type"
@@ -113,11 +226,15 @@ class BookLesson extends Component {
             onChangeText={(text) => this.setState({lessonLength: text})}
           />
 
+          */}
+
           <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit.bind(this)}>
             <Text style={styles.buttonText}>
               Book Lesson
             </Text>
           </TouchableOpacity>
+
+
 
           <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressGoBack.bind(this)}>
             <Text style={styles.buttonText}>
@@ -181,6 +298,34 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     height: 40,
   },
+  pickerArea: {
+    //height: 50,
+    // position: 'relative',
+    // flex: 2,
+    borderColor: 'red',
+    borderWidth: 1
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'center',
+    borderColor: 'blue',
+    borderWidth: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderColor: 'gold',
+    borderWidth: 2,
+    borderRadius: 6,
+    marginLeft: 12,
+    marginRight: 12,
+  },
+  modalTitle: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontSize: 16
+  }
 });
 
 export default BookLesson;
