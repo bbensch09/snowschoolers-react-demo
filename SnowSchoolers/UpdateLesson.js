@@ -8,6 +8,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+import SCTextInput from './SCTextInput';
+
 class UpdateLesson extends Component {
   constructor(props) {
     super(props);
@@ -95,34 +97,26 @@ class UpdateLesson extends Component {
           </Text>
           <Text style={styles.heading2}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
 
-          <Text style={styles.controlLabel}>Lesson Type</Text>
-          <TextInput
-            placeholder="Lesson Type"
-            style={[styles.inputText, styles.formControl]}
+          <SCTextInput
+            placeholder="LessonType"
             value={this.state.lessonType}
             onChangeText={(text) => this.setState({lessonType: text})}
           />
 
-          <Text style={styles.controlLabel}>Mountain</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Mountain"
-            style={[styles.inputText, styles.formControl]}
             value={this.state.mountain}
             onChangeText={(text) => this.setState({mountain: text})}
           />
 
-          <Text style={styles.controlLabel}>Date</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Date"
-            style={[styles.inputText, styles.formControl]}
             value={this.state.lessonDate}
             onChangeText={(text) => this.setState({lessonDate: text})}
           />
 
-          <Text style={styles.controlLabel}>Slot</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Slot"
-            style={[styles.inputText, styles.formControl]}
             value={this.state.slot}
             onChangeText={(text) => this.setState({slot: text})}
           />
