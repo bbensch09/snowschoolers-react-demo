@@ -11,6 +11,8 @@ import {
   DatePickerIOS
 } from 'react-native';
 
+import SCButton from './SCButton';
+
 class BookLesson extends Component {
   constructor(props) {
     super(props);
@@ -201,50 +203,17 @@ class BookLesson extends Component {
 
           </Modal>
 
-          {/*
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Lesson Type"
-            value={this.state.lessonType}
-            onChangeText={(text) => this.setState({lessonType: text})}
+          <SCButton
+            label='Book Lesson'
+            color='info'
+            onPress={this._onPressSubmit.bind(this)}
           />
 
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Mountain"
-            value={this.state.mountain}
-            onChangeText={(text) => this.setState({mountain: text})}
+          <SCButton
+            label='Go Back'
+            color='info'
+            onPress={this._onPressGoBack.bind(this)}
           />
-
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Date"
-            value={this.state.lessonDate}
-            onChangeText={(text) => this.setState({lessonDate: text})}
-          />
-
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Length"
-            value={this.state.lessonLength}
-            onChangeText={(text) => this.setState({lessonLength: text})}
-          />
-
-          */}
-
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit.bind(this)}>
-            <Text style={styles.buttonText}>
-              Book Lesson
-            </Text>
-          </TouchableOpacity>
-
-
-
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressGoBack.bind(this)}>
-            <Text style={styles.buttonText}>
-              Go Back
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

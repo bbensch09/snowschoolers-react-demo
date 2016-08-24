@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import SCTextInput from './SCTextInput';
+import SCButton from './SCButton';
 
 class UpdateLesson extends Component {
   constructor(props) {
@@ -135,11 +136,11 @@ class UpdateLesson extends Component {
           />
 
           <Text style={styles.heading2}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnSuccess]} onPress={() => null}>
-            <Text style={styles.buttonText}>
-              Add Student
-            </Text>
-          </TouchableOpacity>
+          <SCButton
+            label="Add Student"
+            color="success"
+            onPress={() => null}
+          />
 
           {/* Todo: Add Student section */}
 
@@ -174,19 +175,17 @@ class UpdateLesson extends Component {
           </View>
 
           {/* Submit Button */}
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnSuccess]} onPress={this._onPressSubmit.bind(this)}>
-            <Text style={styles.buttonText}>
-              Submit
-            </Text>
-          </TouchableOpacity>
+          <SCButton
+            label="Submit"
+            color="success"
+            onPress={this._onPressSubmit.bind(this)}
+          />
 
-          <TouchableOpacity
-            style={[styles.button, styles.formControl, styles.btnSuccess]}
-            onPress={this._onPressGoBack.bind(this)}>
-            <Text style={styles.buttonText}>
-              Go Back
-            </Text>
-          </TouchableOpacity>
+          <SCButton
+            label="Go Back"
+            color="success"
+            onPress={this._onPressGoBack.bind(this)}
+          />
         </ScrollView>
       </View>
     );
