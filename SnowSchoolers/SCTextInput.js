@@ -19,7 +19,9 @@ class SCTextInput extends Component {
         <Text style={styles.controlLabel}>{label}</Text>
         <TextInput
           placeholder={this.props.placeholder}
-          style={[styles.inputText, styles.formControl]}
+          style={[styles.inputText, styles.formControl, this.props.style]}
+          multiline={this.props.multiline}
+          numberOfLines={this.props.numberOfLines}
           value={this.props.value}
           onChangeText={this.props.onChangeText}
         />
