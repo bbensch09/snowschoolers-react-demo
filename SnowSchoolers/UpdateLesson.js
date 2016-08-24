@@ -4,8 +4,12 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TouchableHighlight,
   TextInput,
   ScrollView,
+  Picker,
+  Modal,
+  DatePickerIOS,
 } from 'react-native';
 
 import SCTextInput from './SCTextInput';
@@ -18,14 +22,17 @@ class UpdateLesson extends Component {
     this.state = {
       lessonType: '',
       mountain: '',
-      lessonDate: '',
+      lessonDate: new Date().toISOString().slice(0, 10),
+      timeZoneOffsetInHours: "",//timezone
       slot: '',
-      lessonLength: '',
+      lessonLength: '', // this is different from the one in BookLesson!
       startTime: '',
       students: [],
       lessonLevel: '',
       lessonObjectives: '',
       agree: false,
+      modalVisible: false,
+      activeModal: 'lessonType'
     };
   }
   _onPressGoBack() {
@@ -89,7 +96,122 @@ class UpdateLesson extends Component {
         console.error(error);
       });
   }
+  setModalVisible(visible, pickerType) {
+    if (pickerType) {
+      this.setState({ modalVisible: visible, activeModal: pickerType });
+    }
+    else {
+      this.setState({ modalVisible: visible });
+    }
+  }
+  onLessonDateChange(lessonDate) {
+    this.setState({lessonDate: lessonDate.toISOString().slice(0, 10)});
+  }
+  onTimezoneChange(event) {
+    var offset = parseInt(event.nativeEvent.text, 10);
+    if (isNaN(offset)) {
+      return;
+    }
+    this.setState({timeZoneOffsetInHours: offset});
+  }
   render() {
+    var modalPicker;
+
+    if (this.state.activeModal === 'lessonType') {
+      modalPicker =
+      <Picker selectedValue={this.state.lessonType}
+        onValueChange={(lessonType) => this.setState({lessonType})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Ski" value="Ski" />
+        <Picker.Item label="Snowboard" value="Snowboard" />
+      </Picker>
+    }
+    else if (this.state.activeModal === 'mountain') {
+      modalPicker =
+      <Picker selectedValue={this.state.mountain}
+        onValueChange={(mountain) => this.setState({mountain})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Mt. Hotham" value="Mt. Hotham" />
+        <Picker.Item label="Falls Creek" value="Falls Creek" />
+        <Picker.Item label="Mt. Buller" value="Mt. Buller" />
+      </Picker>
+    }
+    else if (this.state.activeModal === 'lessonDate') {
+      modalPicker =
+      <DatePickerIOS
+        date={new Date(this.state.lessonDate)}
+        mode="date"
+        timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+        onDateChange={this.onLessonDateChange.bind(this)}
+      />
+    }
+    else if (this.state.activeModal === 'slot') {
+      modalPicker =
+      <Picker selectedValue={this.state.slot}
+        onValueChange={(slot) => this.setState({slot})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="Morning" value="Morning" />
+        <Picker.Item label="Afternoon" value="Afternoon" />
+        <Picker.Item label="Full Day" value="Full Day" />
+      </Picker>
+    }
+    /*
+      inconsistency: in the web app, lessonLength in BookLesson
+      should have been 'slot'; Be aware in this scene that lessonLength will
+      be for: 2 hours, 3 hours, or 6 hours, and not the morning,
+      afternoon, full day!
+    */
+    else if (this.state.activeModal === 'lessonLength') {
+      modalPicker =
+      <Picker selectedValue={this.state.lessonLength}
+        onValueChange={(lessonLength) => this.setState({lessonLength})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="2 hours" value="2 hours" />
+        <Picker.Item label="3 hours" value="3 hours" />
+        <Picker.Item label="6 hours" value="6 hours" />
+      </Picker>
+    }
+    else if (this.state.activeModal === 'startTime') {
+      var slots;
+      if (this.state.slot === 'Morning' || this.state.slot === 'Full Day') {
+        slots = ["9:00am", "9:30am"];
+      }
+      else if (this.state.slot === 'Afternoon') {
+        slots = ["1:00pm", "1:30pm"];
+      }
+      else {
+        slots = [];
+      }
+
+      var pickerItems = slots.map((slot) => {
+        return <Picker.Item label={slot} value={slot} />;
+      });
+
+      modalPicker =
+      <Picker selectedValue={this.state.startTime}
+        onValueChange={(startTime) => this.setState({startTime})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        {pickerItems}
+      </Picker>
+    }
+    else if (this.state.activeModal === 'lessonLevel') {
+      modalPicker =
+      <Picker selectedValue={this.state.lessonLevel}
+        onValueChange={(lessonLevel) => this.setState({lessonLevel})}
+        style={styles.pickerArea}>
+        <Picker.Item label="" value="" />
+        <Picker.Item label="First-time on the mountain" value="First-time on the mountain" />
+        <Picker.Item label="Beginner" value="Beginner" />
+        <Picker.Item label="Intermediate" value="Intermediate" />
+        <Picker.Item label="Advanced" value="Advanced" />
+      </Picker>
+    }
+
     return (
       <View style={[this.props.style.container, { backgroundColor: 'rgba(222, 250, 250, 1)' }]}>
         <ScrollView style={{marginTop: 40}}>
@@ -98,7 +220,29 @@ class UpdateLesson extends Component {
           </Text>
           <Text style={styles.heading2}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
 
-          <SCTextInput
+          <Modal
+            animationType={"slide"}
+            transparent={true}
+            visible={this.state.modalVisible}
+            onRequestClose={() => alert("Modal closed")}>
+
+            <View style={styles.modalView}>
+              <View style={styles.modalContent}>
+                <Text style={styles.modalTitle}>Please select an option:</Text>
+
+                {modalPicker}
+
+                <SCButton
+                  label='OK'
+                  color='info'
+                  onPress={() => { this.setModalVisible(!this.state.modalVisible)}}
+                />
+              </View>
+            </View>
+
+          </Modal>
+
+          {/*<SCTextInput
             placeholder="LessonType"
             value={this.state.lessonType}
             onChangeText={(text) => this.setState({lessonType: text})}
@@ -126,13 +270,36 @@ class UpdateLesson extends Component {
             placeholder="Length"
             value={this.state.lessonLength}
             onChangeText={(text) => this.setState({lessonLength: text})}
-          />
+          />*/}
 
-          <SCTextInput
-            placeholder="Pick a start time"
-            label="Start Time"
-            value={this.state.startTime}
-            onChangeText={(text) => this.setState({startTime: text})}
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}>
+            <Text>{this.state.lessonType ? this.state.lessonType : 'Lesson Type'}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}>
+            <Text>{this.state.mountain ? this.state.mountain : 'Mountain'}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}>
+            <Text>{this.state.lessonDate ? this.state.lessonDate : 'Date'}</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight
+            style={[styles.inputText, styles.formControl]}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'slot')}>
+            <Text>{this.state.slot ? this.state.slot : 'Slot'}</Text>
+          </TouchableHighlight>
+
+          <Text style={styles.controlLabel}>Start Time</Text>
+          <SCButton
+            label="Pick a start time"
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'startTime')}
           />
 
           <Text style={styles.heading2}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
@@ -147,18 +314,18 @@ class UpdateLesson extends Component {
 
           <Text style={styles.heading2}>Lesson Objectives</Text>
 
-          <SCTextInput
-            placeholder="Ability Level"
+          <Text style={styles.controlLabel}>Skill Level</Text>
+          <SCButton
             label="Skill Level"
-            value={this.state.lessonLevel}
-            onChangeText={(text) => this.setState({lessonLevel: text})}
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLevel')}
           />
 
           {/* right now multiline is not working . . .*/}
           <SCTextInput
             placeholder="What do you hope to get out of this lesson?"
             label="Objectives"
-            numberOfLines={5}
+            style={{height: 60}}
+            numberOfLines={4}
             multiline={true}
             value={this.state.lessonObjectives}
             onChangeText={(text) => this.setState({lessonObjectives: text})}
@@ -210,7 +377,59 @@ const styles = StyleSheet.create({
   heading2: {
     fontSize: 16,
     marginLeft: 12,
-  }
+  },
+  pickerArea: {
+    //height: 50,
+    // position: 'relative',
+    // flex: 2,
+    // borderColor: 'red',
+    // borderWidth: 1
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'center',
+    //borderColor: 'blue',
+    borderWidth: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    //borderColor: 'gold',
+    //borderWidth: 2,
+    borderRadius: 6,
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 10
+  },
+  modalTitle: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    fontSize: 16
+  },
+  inputText: {
+    //flex: 1,
+    alignSelf: 'stretch',
+    height: 25,
+    backgroundColor: 'rgba(255, 253, 250, 1)',
+  },
+  formControl: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10,
+    padding: 6,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 12,
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  controlLabel: {
+    fontWeight: 'bold',
+    marginLeft: 16,
+  },
 });
 
 export default UpdateLesson;
