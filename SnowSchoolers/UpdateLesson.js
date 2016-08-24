@@ -188,7 +188,7 @@ class UpdateLesson extends Component {
       }
 
       var pickerItems = slots.map((slot) => {
-        return <Picker.Item label={slot} value={slot} />;
+        return <Picker.Item key={slot} label={slot} value={slot} />;
       });
 
       modalPicker =
@@ -298,7 +298,7 @@ class UpdateLesson extends Component {
 
           <Text style={styles.controlLabel}>Start Time</Text>
           <SCButton
-            label="Pick a start time"
+            label={this.state.startTime ? this.state.startTime : "Pick a start time"}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'startTime')}
           />
 
@@ -316,7 +316,7 @@ class UpdateLesson extends Component {
 
           <Text style={styles.controlLabel}>Skill Level</Text>
           <SCButton
-            label="Skill Level"
+            label={this.state.lessonLevel ? this.state.lessonLevel : "Skill Level"}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLevel')}
           />
 
