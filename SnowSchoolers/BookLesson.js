@@ -193,7 +193,7 @@ class BookLesson extends Component {
 
                 {modalPicker}
 
-                <TouchableHighlight style={[styles.button, styles.btnInfo]} onPress={() => { this.setModalVisible(!this.state.modalVisible)}}>
+                <TouchableHighlight style={[styles.button, styles.formControl, styles.btnInfo]} onPress={() => { this.setModalVisible(!this.state.modalVisible)}}>
                   <Text style={styles.buttonText}>OK</Text>
                 </TouchableHighlight>
               </View>
@@ -309,24 +309,25 @@ const styles = StyleSheet.create({
     //height: 50,
     // position: 'relative',
     // flex: 2,
-    borderColor: 'red',
-    borderWidth: 1
+    // borderColor: 'red',
+    // borderWidth: 1
   },
   modalView: {
     flex: 1,
     justifyContent: 'center',
-    borderColor: 'blue',
+    //borderColor: 'blue',
     borderWidth: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
 
   },
   modalContent: {
     backgroundColor: 'white',
-    borderColor: 'gold',
-    borderWidth: 2,
+    //borderColor: 'gold',
+    //borderWidth: 2,
     borderRadius: 6,
-    marginLeft: 12,
-    marginRight: 12,
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 10
   },
   modalTitle: {
     fontWeight: 'bold',
