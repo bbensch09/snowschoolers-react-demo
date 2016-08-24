@@ -192,48 +192,7 @@ class UpdateLesson extends Component {
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//     color: 'blue',
-//     fontWeight: 'bold',
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
-
 const styles = StyleSheet.create({
-  button: {
-    //flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    height: 25,
-    backgroundColor: 'rgb(242, 242, 242)',
-  },
-  btnInfo: {
-    backgroundColor: '#5bc0de',
-    borderColor: '#46b8da',
-  },
-  btnSuccess: {
-    backgroundColor: '#5cb85c',
-    borderColor: '#4cae4c',
-  },
-  buttonText: {
-    alignSelf: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-  },
   formControl: {
     marginLeft: 20,
     marginRight: 20,

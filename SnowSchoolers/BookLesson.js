@@ -195,9 +195,11 @@ class BookLesson extends Component {
 
                 {modalPicker}
 
-                <TouchableHighlight style={[styles.button, styles.formControl, styles.btnInfo]} onPress={() => { this.setModalVisible(!this.state.modalVisible)}}>
-                  <Text style={styles.buttonText}>OK</Text>
-                </TouchableHighlight>
+                <SCButton
+                  label='OK'
+                  color='info'
+                  onPress={() => { this.setModalVisible(!this.state.modalVisible)}}
+                />
               </View>
             </View>
 
@@ -244,22 +246,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 25,
     backgroundColor: 'rgba(255, 253, 250, 1)',
-  },
-  button: {
-    //flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    height: 25,
-    backgroundColor: 'rgb(242, 242, 242)',
-  },
-  btnInfo: {
-    backgroundColor: '#5bc0de',
-    borderColor: '#46b8da',
-  },
-  buttonText: {
-    alignSelf: 'center',
-    color: 'white',
-    fontWeight: 'bold',
   },
   formControl: {
     marginLeft: 20,
