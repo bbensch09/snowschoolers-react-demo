@@ -13,6 +13,9 @@ class SCButton extends Component {
       case 'info':
         color = styles.btnInfo;
         break;
+      case 'success':
+        color = styles.btnSuccess;
+        break;
       default:
         color = styles.btnDefault;
     }
@@ -37,6 +40,10 @@ const styles = StyleSheet.create({
   btnInfo: {
     backgroundColor: '#5bc0de',
     borderColor: '#46b8da',
+  },
+  btnSuccess: {
+    backgroundColor: '#5cb85c',
+    borderColor: '#4cae4c',
   },
   btnDefault: {
     backgroundColor: 'rgba(255, 253, 250, 1)',
