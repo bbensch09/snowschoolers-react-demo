@@ -138,43 +138,47 @@ class BookLesson extends Component {
     return (
       <View style={this.props.style.container}>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-          <Text>Debug:</Text>
-          <Text>{debugState}</Text>
+          {/*<Text>Debug:</Text>
+          <Text>{debugState}</Text>*/}
 
-          <Text style={{ alignSelf: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>
-            Book a Lesson Today
-          </Text>
-          <Text style={{ paddingLeft: 20, paddingRight: 20 }}>
-            Personalized one-on-one attention from an expert
-            <Text style={{fontWeight: 'bold'}}> Snow Schoolers </Text>
-            instructor is the best way to experience the Snowies!
-          </Text>
+          <Text style={this.props.style.welcome}>SnowSchoolers</Text>
+
+          <View style={{borderWidth: 2, borderRadius: 12, marginLeft: 20, marginRight: 20, paddingTop: 20, paddingBottom: 20}}>
+            <Text style={{ alignSelf: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>
+              Book a Lesson Today
+            </Text>
+            <Text style={{ paddingLeft: 20, paddingRight: 20 }}>
+              Personalized one-on-one attention from an expert
+              <Text style={{fontWeight: 'bold'}}> Snow Schoolers </Text>
+              instructor is the best way to experience the Snowies!
+            </Text>
+          </View>
         </View>
 
-        <View style={{ flex: 2, backgroundColor: 'cyan', justifyContent: 'center', alignItems: 'stretch' }}>
+        <View style={{ flex: 2, backgroundColor: 'rgba(222, 250, 250, 1)', justifyContent: 'center', alignItems: 'stretch' }}>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}>
-            <Text>Lesson Type: {this.state.lessonType}</Text>
+            <Text>{this.state.lessonType ? this.state.lessonType : 'Lesson Type'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}>
-            <Text>Mountain: {this.state.mountain}</Text>
+            <Text>{this.state.mountain ? this.state.mountain : 'Mountain'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}>
-            <Text>Date: {this.state.lessonDate}</Text>
+            <Text>{this.state.lessonDate ? this.state.lessonDate : 'Date'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLength')}>
-            <Text>Length: {this.state.lessonLength}</Text>
+            <Text>{this.state.lessonLength ? this.state.lessonLength : 'Length'}</Text>
           </TouchableHighlight>
 
           <Modal
@@ -270,7 +274,7 @@ const styles = StyleSheet.create({
     //flex: 1,
     alignSelf: 'stretch',
     height: 25,
-    backgroundColor: 'antiquewhite',
+    backgroundColor: 'rgba(255, 253, 250, 1)',
   },
   button: {
     //flex: 1,
@@ -295,8 +299,11 @@ const styles = StyleSheet.create({
     padding: 6,
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 6,
+    borderRadius: 12,
     height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   pickerArea: {
     //height: 50,
