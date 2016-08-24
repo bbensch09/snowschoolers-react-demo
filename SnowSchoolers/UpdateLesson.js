@@ -90,7 +90,7 @@ class UpdateLesson extends Component {
   }
   render() {
     return (
-      <View style={this.props.style.container}>
+      <View style={[this.props.style.container, { backgroundColor: 'rgba(222, 250, 250, 1)' }]}>
         <ScrollView style={{marginTop: 40}}>
           <Text style={styles.heading}>
             Update Your Lesson
@@ -121,18 +121,15 @@ class UpdateLesson extends Component {
             onChangeText={(text) => this.setState({slot: text})}
           />
 
-          <Text style={styles.controlLabel}>Length</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Length"
-            style={[styles.inputText, styles.formControl]}
             value={this.state.lessonLength}
             onChangeText={(text) => this.setState({lessonLength: text})}
           />
 
-          <Text style={styles.controlLabel}>Start Time</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Pick a start time"
-            style={[styles.inputText, styles.formControl]}
+            label="Start Time"
             value={this.state.startTime}
             onChangeText={(text) => this.setState({startTime: text})}
           />
@@ -149,18 +146,17 @@ class UpdateLesson extends Component {
 
           <Text style={styles.heading2}>Lesson Objectives</Text>
 
-          <Text style={styles.controlLabel}>Skill Level</Text>
-          <TextInput
+          <SCTextInput
             placeholder="Ability Level"
-            style={[styles.inputText, styles.formControl]}
+            label="Skill Level"
             value={this.state.lessonLevel}
             onChangeText={(text) => this.setState({lessonLevel: text})}
           />
 
-          <Text style={styles.controlLabel}>Objectives</Text>
-          <TextInput
+          {/* right now multiline is not working . . .*/}
+          <SCTextInput
             placeholder="What do you hope to get out of this lesson?"
-            style={[styles.inputText, styles.formControl]}
+            label="Objectives"
             numberOfLines={5}
             multiline={true}
             value={this.state.lessonObjectives}
@@ -219,12 +215,6 @@ class UpdateLesson extends Component {
 // });
 
 const styles = StyleSheet.create({
-  inputText: {
-    //flex: 1,
-    alignSelf: 'stretch',
-    height: 25,
-    backgroundColor: 'antiquewhite',
-  },
   button: {
     //flex: 1,
     justifyContent: 'center',
@@ -254,10 +244,6 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 6,
     height: 40,
-  },
-  controlLabel: {
-    fontWeight: 'bold',
-    marginLeft: 16,
   },
   heading: {
     fontSize: 22,
