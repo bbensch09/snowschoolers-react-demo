@@ -9,9 +9,14 @@ import {
 export default
 class SCTextInput extends Component {
   render() {
+    let label = this.props.label;
+    // If not given a label, use given placeholder
+    if (!label) {
+      label = this.props.placeholder;
+    }
     return (
       <View>
-        <Text style={styles.controlLabel}>{this.props.placeholder}</Text>
+        <Text style={styles.controlLabel}>{label}</Text>
         <TextInput
           placeholder={this.props.placeholder}
           style={[styles.inputText, styles.formControl]}
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
     //flex: 1,
     alignSelf: 'stretch',
     height: 25,
-    backgroundColor: 'antiquewhite',
+    backgroundColor: 'rgba(255, 253, 250, 1)',
   },
   formControl: {
     marginLeft: 20,
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
     padding: 6,
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 6,
+    borderRadius: 12,
     height: 40,
   },
   controlLabel: {
