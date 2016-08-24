@@ -8,20 +8,23 @@ import {
 export default
 class SCButton extends Component {
   render() {
-    let color;
+    let color, fontColor;
     switch(this.props.color) {
       case 'info':
         color = styles.btnInfo;
+        fontColor = styles.btnInfoText;
         break;
       case 'success':
         color = styles.btnSuccess;
+        fontColor = styles.btnInfoSuccess;
         break;
       default:
         color = styles.btnDefault;
+        fontColor = styles.btnDefaultText;
     }
     return (
       <TouchableOpacity style={[styles.button, styles.formControl, color]} onPress={this.props.onPress}>
-        <Text style={styles.buttonText}>
+        <Text style={[styles.buttonText, fontColor]}>
           {this.props.label}
         </Text>
       </TouchableOpacity>
@@ -41,12 +44,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#5bc0de',
     borderColor: '#46b8da',
   },
+  btnInfoText: {
+    color: 'white',
+  },
   btnSuccess: {
     backgroundColor: '#5cb85c',
     borderColor: '#4cae4c',
   },
+  btnSuccessText: {
+    color: 'white',
+  },
   btnDefault: {
     backgroundColor: 'rgba(255, 253, 250, 1)',
+  },
+  btnDefaultText: {
+    color: 'black',
   },
   buttonText: {
     alignSelf: 'center',
