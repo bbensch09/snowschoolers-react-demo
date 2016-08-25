@@ -11,6 +11,8 @@ import {
   DatePickerIOS
 } from 'react-native';
 
+import SCButton from './SCButton';
+
 class BookLesson extends Component {
   constructor(props) {
     super(props);
@@ -193,58 +195,27 @@ class BookLesson extends Component {
 
                 {modalPicker}
 
-                <TouchableHighlight style={[styles.button, styles.formControl, styles.btnInfo]} onPress={() => { this.setModalVisible(!this.state.modalVisible)}}>
-                  <Text style={styles.buttonText}>OK</Text>
-                </TouchableHighlight>
+                <SCButton
+                  label='OK'
+                  color='info'
+                  onPress={() => { this.setModalVisible(!this.state.modalVisible)}}
+                />
               </View>
             </View>
 
           </Modal>
 
-          {/*
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Lesson Type"
-            value={this.state.lessonType}
-            onChangeText={(text) => this.setState({lessonType: text})}
+          <SCButton
+            label='Book Lesson'
+            color='info'
+            onPress={this._onPressSubmit.bind(this)}
           />
 
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Mountain"
-            value={this.state.mountain}
-            onChangeText={(text) => this.setState({mountain: text})}
+          <SCButton
+            label='Go Back'
+            color='info'
+            onPress={this._onPressGoBack.bind(this)}
           />
-
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Date"
-            value={this.state.lessonDate}
-            onChangeText={(text) => this.setState({lessonDate: text})}
-          />
-
-          <TextInput
-            style={[styles.inputText, styles.formControl]}
-            placeholder="Length"
-            value={this.state.lessonLength}
-            onChangeText={(text) => this.setState({lessonLength: text})}
-          />
-
-          */}
-
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressSubmit.bind(this)}>
-            <Text style={styles.buttonText}>
-              Book Lesson
-            </Text>
-          </TouchableOpacity>
-
-
-
-          <TouchableOpacity style={[styles.button, styles.formControl, styles.btnInfo]} onPress={this._onPressGoBack.bind(this)}>
-            <Text style={styles.buttonText}>
-              Go Back
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
     );
@@ -252,45 +223,11 @@ class BookLesson extends Component {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   backgroundColor: '#F5FCFF',
-  // },
-  // welcome: {
-  //   fontSize: 20,
-  //   textAlign: 'center',
-  //   margin: 10,
-  //   color: 'blue',
-  //   fontWeight: 'bold',
-  // },
-  // instructions: {
-  //   textAlign: 'center',
-  //   color: '#333333',
-  //   marginBottom: 5,
-  // },
   inputText: {
     //flex: 1,
     alignSelf: 'stretch',
     height: 25,
     backgroundColor: 'rgba(255, 253, 250, 1)',
-  },
-  button: {
-    //flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'stretch',
-    height: 25,
-    backgroundColor: 'rgb(242, 242, 242)',
-  },
-  btnInfo: {
-    backgroundColor: '#5bc0de',
-    borderColor: '#46b8da',
-  },
-  buttonText: {
-    alignSelf: 'center',
-    color: 'white',
-    fontWeight: 'bold',
   },
   formControl: {
     marginLeft: 20,
