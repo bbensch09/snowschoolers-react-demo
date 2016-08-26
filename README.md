@@ -19,3 +19,50 @@ json-server --watch db.json
 By default, the API will be served at <http://localhost:3000>
 
 The fake API follows RESTful standards, so you can manipulate it using RESTful routes.
+
+## Frontend Installation
+
+### Mac OS X (iOS)
+
+*Note: at the time these instructions were written, the version of React Native was v0.30*
+
+For iOS on Mac OS X, first make sure you have **Xcode** in your system. You will then need the **Chrome** browser for debugging.
+
+Then, install **node** and **watchman** using Brew:
+
+```
+brew install node
+brew install watchman
+```
+
+Finally, install React Native:
+
+```
+npm install -g react-native-cli
+```
+
+You can run the app after changing to its directory and running:
+
+```
+react-native run-ios
+```
+
+Note the entry-point of the app is in the file `index.ios.js`.
+
+#### Issues
+
+##### node_modules/ directory
+
+Because the `node_modules/` directory is not tracked by git, you might need to call the following command to install all node dependencies:
+
+```
+npm install
+```
+
+##### Runtime Server Not Starting
+
+In case your react packager terminal window is not running, do the following:
+
+```
+npm start
+```
