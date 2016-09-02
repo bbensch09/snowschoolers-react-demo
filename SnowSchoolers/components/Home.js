@@ -22,7 +22,7 @@ class Home extends Component {
   render() {
     return (
       <View style={this.props.style.container}>
-        <Image source={require('./images/tetons.jpg')} style={styles.backgroundImage}>
+        <Image source={require('../images/tetons.jpg')} style={styles.backgroundImage}>
           <Text style={this.props.style.welcome}>
             Welcome to SnowSchoolers!
           </Text>

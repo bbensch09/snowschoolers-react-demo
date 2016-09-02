@@ -14,12 +14,12 @@ import {
 } from 'react-native';
 
 // Require all custom component views here
-import Home from './Home';
-import BookLesson from './BookLesson';
-import UpdateLesson from './UpdateLesson';
-import LessonDetails from './LessonDetails';
-import WhatsNext from './WhatsNext';
-import NotFound from './NotFound';
+import Home from './components/Home';
+import BookLesson from './components/BookLesson';
+import UpdateLesson from './components/UpdateLesson';
+import LessonDetails from './components/LessonDetails';
+import WhatsNext from './components/WhatsNext';
+import NotFound from './components/NotFound';
 
 class SnowSchoolers extends Component {
   // Define all the routes
