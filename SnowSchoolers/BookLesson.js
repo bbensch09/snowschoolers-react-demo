@@ -13,7 +13,7 @@ import {
 
 import SCButton from './SCButton';
 
-class BookLesson extends Component {
+export default class BookLesson extends Component {
   constructor(props) {
     super(props);
 
@@ -162,25 +162,28 @@ class BookLesson extends Component {
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
             onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}
-            underlayColor={'gray'}>
+            underlayColor={'lightgray'}>
             <Text>{this.state.lessonType ? this.state.lessonType : 'Lesson Type'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}>
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}
+            underlayColor={'lightgray'}>
             <Text>{this.state.mountain ? this.state.mountain : 'Mountain'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}>
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}
+            underlayColor={'lightgray'}>
             <Text>{this.state.lessonDate ? this.state.lessonDate : 'Date'}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLength')}>
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonLength')}
+            underlayColor={'lightgray'}>
             <Text>{this.state.lessonLength ? this.state.lessonLength : 'Length'}</Text>
           </TouchableHighlight>
 
@@ -274,4 +277,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BookLesson;
+// export default BookLesson;

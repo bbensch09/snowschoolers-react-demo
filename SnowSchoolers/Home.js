@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'transparent',
     backgroundColor: 'blue',
-    borderRadius: 8,
+    borderRadius: 12,
     width: 300,
     margin: 10,
     padding: 10,
