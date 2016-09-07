@@ -31,7 +31,7 @@ class Home extends Component {
             Experience the Snowies with personalized lessons
           </Text>
 
-          <TouchableOpacity style={styles.button} onPress={this._onPressBookLesson.bind(this)}>
+          <TouchableOpacity style={[styles.button, {marginTop: 50}]} onPress={this._onPressBookLesson.bind(this)}>
             <Text style={styles.text}>
               Book Lesson
             </Text>
@@ -75,10 +75,19 @@ const styles = StyleSheet.create({
     //resizeMode: 'cover',
   },
   button: {
-    
+    borderWidth: 2,
+    borderColor: 'transparent',
+    backgroundColor: 'blue',
+    borderRadius: 5,
+    width: 300,
+    margin: 10,
+    padding: 10,
   },
   text: {
-    fontSize: 20,
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 
 });
