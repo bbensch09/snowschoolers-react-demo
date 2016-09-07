@@ -161,7 +161,8 @@ class BookLesson extends Component {
 
           <TouchableHighlight
             style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}>
+            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}
+            underlayColor={'gray'}>
             <Text>{this.state.lessonType ? this.state.lessonType : 'Lesson Type'}</Text>
           </TouchableHighlight>
 
