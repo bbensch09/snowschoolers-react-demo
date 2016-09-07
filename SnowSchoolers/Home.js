@@ -25,7 +25,7 @@ export default class Home extends Component {
       <View style={styles.container}>
         <Image source={require('./images/tetons.jpg')} style={styles.backgroundImage}>
           <Text style={styles.welcome}>
-            Welcome to SnowSchoolers!
+            Snow Schoolers
           </Text>
 
           <Text style={styles.instructions}>
@@ -33,7 +33,7 @@ export default class Home extends Component {
           </Text>
 
           <TouchableOpacity
-              style={[styles.button, {marginTop: 50}]}
+              style={[styles.button, {marginTop: 30}]}
               onPress={this._onPressBookLesson.bind(this)}
               activeOpacity={activeOpacityNum}>
             <Text style={styles.text}>
@@ -76,7 +76,7 @@ export default class Home extends Component {
               Not Found
             </Text>
           </TouchableOpacity>
-        </Image>
+          </Image>
       </View>
     );
   }
@@ -90,11 +90,12 @@ const styles = StyleSheet.create({
     // backgroundColor: '#F5FCFF',
   },
   backgroundImage: {
-    // flex: 1,
-    alignSelf: 'center',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: 'cover',
+    // resizeMode: 'stretch',
+    width: undefined,
+    height: undefined,
   },
   button: {
     borderWidth: 2,
@@ -112,16 +113,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   welcome: {
-    fontSize: 45,
+    fontSize: 70,
     textAlign: 'center',
     margin: 10,
-    color: 'blue',
+    color: 'white',
     fontWeight: 'bold',
+    flexWrap: 'wrap',
+    alignSelf: 'center',
   },
   // home page instructions
   instructions: {
     textAlign: 'center',
-    color: 'yellow',
+    color: 'white',
     marginBottom: 5,
     fontSize: 16,
   },

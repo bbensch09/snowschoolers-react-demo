@@ -67,6 +67,13 @@
       "terms_accepted": true,
       "instructor_id": 2,
       "requester_id": 1
+    },
+    {
+      "activity": "",
+      "location": "",
+      "lesson_time_id": 1,
+      "instructor_id": 1,
+      "id": 3
     }
   ],
   "lesson_times": [
@@ -97,7 +104,15 @@
     }
   ],
   "students": [
-    { "id": 1, "name": "Ashley Morgan", "age_range": "under 10", "gender": "Female", "lesson_history": "something", "experience": "none", "relationship_to_requester": "n/a" }
+    {
+      "id": 1,
+      "name": "Ashley Morgan",
+      "age_range": "under 10",
+      "gender": "Female",
+      "lesson_history": "something",
+      "experience": "none",
+      "relationship_to_requester": "n/a"
+    }
   ],
   "instructors": [
     {
