@@ -20,64 +20,62 @@ export default class Home extends Component {
     this._navigate('notfound');
   }
   render() {
-    let activeOpacityNum = 0.7;
+    const ActiveOpacityNum = 0.7;
     return (
-      <View style={styles.container}>
-        <Image source={require('./images/tetons.jpg')} style={styles.backgroundImage}>
-          <Text style={styles.welcome}>
-            Snow Schoolers
+      <Image source={require('./images/tetons.jpg')} style={styles.backgroundImage}>
+        <Text style={styles.welcome}>
+          Snow Schoolers
+        </Text>
+
+        <Text style={styles.instructions}>
+          Experience the Snowies with personalized lessons
+        </Text>
+
+        <TouchableOpacity
+            style={[styles.button, {marginTop: 20}]}
+            onPress={this._onPressBookLesson.bind(this)}
+            activeOpacity={ActiveOpacityNum}>
+          <Text style={styles.text}>
+            Book Lesson
           </Text>
+        </TouchableOpacity>
 
-          <Text style={styles.instructions}>
-            Experience the Snowies with personalized lessons
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => this._navigate('updatelesson')}
+            activeOpacity={ActiveOpacityNum}>
+          <Text style={styles.text}>
+            Update Lesson
           </Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-              style={[styles.button, {marginTop: 30}]}
-              onPress={this._onPressBookLesson.bind(this)}
-              activeOpacity={activeOpacityNum}>
-            <Text style={styles.text}>
-              Book Lesson
-            </Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => this._navigate('lessondetails')}
+            activeOpacity={ActiveOpacityNum}>
+          <Text style={styles.text}>
+            Lesson Details
+          </Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._navigate('updatelesson')}
-              activeOpacity={activeOpacityNum}>
-            <Text style={styles.text}>
-              Update Lesson
-            </Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => this._navigate('whatsnext')}
+            activeOpacity={ActiveOpacityNum}>
+          <Text style={styles.text}>
+            Whats Next
+          </Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._navigate('lessondetails')}
-              activeOpacity={activeOpacityNum}>
-            <Text style={styles.text}>
-              Lesson Details
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-              style={styles.button}
-              onPress={() => this._navigate('whatsnext')}
-              activeOpacity={activeOpacityNum}>
-            <Text style={styles.text}>
-              Whats Next
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-              style={styles.button}
-              onPress={this._onPressNotFound.bind(this)}
-              activeOpacity={activeOpacityNum}>
-            <Text style={styles.text}>
-              Not Found
-            </Text>
-          </TouchableOpacity>
-          </Image>
-      </View>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={this._onPressNotFound.bind(this)}
+            activeOpacity={ActiveOpacityNum}>
+          <Text style={styles.text}>
+            Not Found
+          </Text>
+        </TouchableOpacity>
+      </Image>
     );
   }
 }
@@ -103,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderRadius: 12,
     width: 300,
-    margin: 10,
+    margin: 8,
     padding: 10,
   },
   text: {
@@ -124,9 +122,11 @@ const styles = StyleSheet.create({
   // home page instructions
   instructions: {
     textAlign: 'center',
-    color: 'white',
+    color: 'brown',
     marginBottom: 5,
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: 'bold',
+
   },
 
 });

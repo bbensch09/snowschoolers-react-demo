@@ -74,6 +74,13 @@
       "lesson_time_id": 1,
       "instructor_id": 1,
       "id": 3
+    },
+    {
+      "activity": "",
+      "location": "",
+      "lesson_time_id": 1,
+      "instructor_id": 1,
+      "id": 4
     }
   ],
   "lesson_times": [
