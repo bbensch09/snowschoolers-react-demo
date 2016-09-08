@@ -22,7 +22,8 @@ export default class Home extends Component {
   render() {
     const ActiveOpacityNum = 0.7;
     return (
-      <Image source={require('./images/tetons.jpg')} style={styles.backgroundImage}>
+
+      <Image source={require('../images/tetons.jpg')} style={styles.backgroundImage}>
         <Text style={styles.welcome}>
           Snow Schoolers
         </Text>
