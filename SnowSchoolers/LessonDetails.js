@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -13,7 +14,7 @@ export default class LessonDetails extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={[styles.lessonDetails, {fontSize: 40}]}>
           Lesson Details
         </Text>
@@ -40,10 +41,19 @@ export default class LessonDetails extends Component {
         <Text style={styles.label}>Duration:</Text>
         <View style={styles.textContainer}><Text style={styles.text}>2 hours</Text></View>
 
+        <Text style={styles.label}>Start Time:</Text>
+        <View style={styles.textContainer}><Text style={styles.text}>9:00 am</Text></View>
+
+        <Text style={styles.label}>Skill Level:</Text>
+        <View style={styles.textContainer}><Text style={styles.text}>Beginner</Text></View>
+
+        <Text style={styles.label}>Objectives:</Text>
+        <View style={styles.textContainer}><Text style={styles.text}>Learn to ski!</Text></View>
+
         <TouchableOpacity>
 
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -51,9 +61,10 @@ export default class LessonDetails extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightblue',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    marginTop: 50,
+    marginBottom: 50,
   },
   welcome: {
     fontSize: 20,
@@ -71,26 +82,34 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     padding: 5,
+    fontSize: 15,
   },
   textContainer: {
     flexDirection: 'row',
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 15,
+    marginRight: 15,
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'lightgray',
     alignSelf: 'flex-start',
     borderColor: 'silver',
     borderRadius: 5,
-    borderWidth: 1,
+    borderWidth: 2,
+    shadowColor: 'black',
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
   },
   text: {
     fontSize: 15,
     flex: 1,
+    color: 'blue',
+    fontWeight: 'bold',
   },
   lessonDetails: {
     alignSelf: 'flex-start',
     fontSize: 20,
     margin: 10,
+    fontWeight: 'bold',
+
   },
 });
 
