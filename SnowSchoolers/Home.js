@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
   button: {
     borderWidth: 2,
     borderColor: 'transparent',
-    backgroundColor: 'blue',
-    borderRadius: 12,
+    backgroundColor: 'navy',
+    borderRadius: 8,
     width: 300,
     margin: 8,
     padding: 10,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   welcome: {
-    fontSize: 70,
+    fontSize: 60,
     textAlign: 'center',
     margin: 10,
     color: 'white',
@@ -122,11 +122,13 @@ const styles = StyleSheet.create({
   // home page instructions
   instructions: {
     textAlign: 'center',
-    color: 'brown',
+    color: 'cyan',
     marginBottom: 5,
     fontSize: 20,
     fontWeight: 'bold',
-
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    shadowRadius: 3,
   },
 
 });

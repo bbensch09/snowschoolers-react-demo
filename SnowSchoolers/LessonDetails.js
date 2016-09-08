@@ -48,10 +48,15 @@ export default class LessonDetails extends Component {
         <View style={styles.textContainer}><Text style={styles.text}>Beginner</Text></View>
 
         <Text style={styles.label}>Objectives:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Learn to ski!</Text></View>
+        <View style={styles.textContainer}><Text style={styles.text}>Learn to ski then win the Olympics!</Text></View>
 
-        <TouchableOpacity>
-
+        <TouchableOpacity
+          onPress={this._onPressGoBack.bind(this)}
+          style={styles.backButton}
+          activeOpacity={0.7}>
+          <Text style={styles.buttonText}>
+            Go Back
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     );
@@ -64,7 +69,6 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
     marginTop: 50,
-    marginBottom: 50,
   },
   welcome: {
     fontSize: 20,
@@ -109,7 +113,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     margin: 10,
     fontWeight: 'bold',
-
+  },
+  backButton: {
+    alignSelf: 'center',
+    marginTop: 20,
+    backgroundColor: 'blue',
+    flexDirection: 'row',
+    padding: 10,
+    margin: 15,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 25,
+    color: 'white',
+    flex: 1,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
 
