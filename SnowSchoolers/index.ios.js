@@ -32,7 +32,7 @@ class SnowSchoolers extends Component {
         break;
 
       case 'lessondetails':
-        component = <LessonDetails navigator={navigator} style={styles} />
+        component = <LessonDetails navigator={navigator}  style={styles} />
         break;
     }
 
@@ -42,7 +42,7 @@ class SnowSchoolers extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'SnowSchoolers', id: 'home' }}
+        initialRoute={{ title: 'SnowSchoolers', id: 'home'}}
         renderScene={this.renderScene}
       />
     );

@@ -11,49 +11,38 @@ import {
 export default class LessonDetails extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      lessonType: '',
-      mountain: '',
-      lessonDate: new Date().toISOString().slice(0, 10),
-      timeZoneOffsetInHours: "",//timezone
-      slot: '',
-      lessonLength: '', // this is different from the one in BookLesson!
-      startTime: '',
-      students: [],
-      lessonLevel: '',
-      lessonObjectives: '',
-      agree: false,
-      modalVisible: false,
-      activeModal: 'lessonType'
-    };
+      instructor: 'No instructor assigned yet',
+      showButton: true,
+    }
   }
 
   _onPressGoBack() {
     this.props.navigator.pop();
   }
 
-  componentWillMount() {
-    var lessonId = this.props.lessonId;
-    // if no lesson id was given, set it to 1
-    if (!lessonId) { lessonId = 1; }
+  confirmInstructor() {
+    this.setState({
+      instructor: 'Your instructor is Jon Snow',
+      showButton: false,
+    })
+  }
 
-    fetch('http://localhost:3000/lessons/' + lessonId)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-
-        // Update the state to reflect the data in the backend
-        this.setState({
-          lessonType: responseJson.activity,
-          mountain: responseJson.location,
-          lessonDate: "2016-08-18",
-          slot: "Morning"
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  hideButton() {
+    if (this.state.showButton) {
+      return (
+        <TouchableOpacity
+          onPress={this.confirmInstructor.bind(this)}
+          style={[styles.backButton, {backgroundColor: 'green'}]}
+          activeOpacity={0.7}>
+          <Text style={styles.buttonText}>
+            Accept This Lesson Request
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -66,39 +55,51 @@ export default class LessonDetails extends Component {
           Requester: Brian Student
         </Text>
         <Text style={[styles.lessonDetails, {color: 'gray'}]}>
-          No instructor assigned yet
+          {this.state.instructor}
         </Text>
-        <Text style={styles.lessonDetails}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
-
-        <Text style={styles.label}>Lesson Type:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Snowboard</Text></View>
-
-        <Text style={styles.label}>Mountain:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Alta</Text></View>
-
-        <Text style={styles.label}>Date:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>2016-08-28</Text></View>
-
-        <Text style={styles.label}>Slot:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Morning</Text></View>
-
-        <Text style={styles.label}>Duration:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>2 hours</Text></View>
-
-        <Text style={styles.label}>Start Time:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>9:00 am</Text></View>
-
-        <Text style={styles.label}>Skill Level:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Beginner</Text></View>
-
-        <Text style={styles.label}>Objectives:</Text>
-        <View style={styles.textContainer}><Text style={styles.text}>Learn to ski then win the Olympics!</Text></View>
 
         <View>
-        <Text style={styles.lessonDetails}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
-        <Text></Text>
+          <Text style={styles.lessonDetails}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
 
+          <Text style={styles.label}>Lesson Type:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>Snowboard</Text></View>
+
+          <Text style={styles.label}>Mountain:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>Alta</Text></View>
+
+          <Text style={styles.label}>Date:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>2016-08-28</Text></View>
+
+          <Text style={styles.label}>Slot:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>Morning</Text></View>
+
+          <Text style={styles.label}>Duration:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>2 hours</Text></View>
+
+          <Text style={styles.label}>Start Time:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>9:00 am</Text></View>
         </View>
+
+        <View>
+          <Text style={styles.lessonDetails}>Objectives <Text style={{fontWeight: 'bold'}}>and Experience</Text></Text>
+
+          <Text style={styles.label}>Skill Level:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>Beginner</Text></View>
+
+          <Text style={styles.label}>Objectives:</Text>
+          <View style={styles.textContainer}><Text style={styles.text}>Learn to ski then win the Olympics!</Text></View>
+        </View>
+
+        <View>
+          <Text style={styles.lessonDetails}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
+          <Text style={styles.label}>Name: <Text style={{fontWeight: 'normal'}}>Brian Student</Text></Text>
+          <Text style={styles.label}>Age Range: <Text style={{fontWeight: 'normal'}}>Under 10</Text></Text>
+          <Text style={styles.label}>Gender: <Text style={{fontWeight: 'normal'}}>Male</Text></Text>
+          <Text style={styles.label}>About the student: <Text style={{fontWeight: 'normal'}}>I am the student</Text></Text>
+          <Text style={styles.label}>Previous Experience: <Text style={{fontWeight: 'normal'}}>Snowboarded a total of 3 times or less</Text></Text>
+        </View>
+
+        {this.hideButton()}
 
         <TouchableOpacity
           onPress={this._onPressGoBack.bind(this)}
@@ -171,10 +172,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     margin: 15,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   buttonText: {
-    fontSize: 25,
+    fontSize: 20,
     color: 'white',
     flex: 1,
     textAlign: 'center',
