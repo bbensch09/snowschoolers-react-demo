@@ -24,7 +24,7 @@ export default class LessonDetails extends Component {
         <Text style={[styles.lessonDetails, {color: 'gray'}]}>
           No instructor assigned yet
         </Text>
-        <Text style={styles.lessonDetails}>Basic Info</Text>
+        <Text style={styles.lessonDetails}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
 
         <Text style={styles.label}>Lesson Type:</Text>
         <View style={styles.textContainer}><Text style={styles.text}>Snowboard</Text></View>
@@ -49,6 +49,12 @@ export default class LessonDetails extends Component {
 
         <Text style={styles.label}>Objectives:</Text>
         <View style={styles.textContainer}><Text style={styles.text}>Learn to ski then win the Olympics!</Text></View>
+
+        <View>
+        <Text style={styles.lessonDetails}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
+        <Text></Text>
+
+        </View>        
 
         <TouchableOpacity
           onPress={this._onPressGoBack.bind(this)}
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontSize: 20,
     margin: 10,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
   },
   backButton: {
     alignSelf: 'center',
