@@ -58,15 +58,6 @@ export default class Home extends Component {
             Lesson Details
           </Text>
         </TouchableOpacity>
-
-        <TouchableOpacity
-            style={styles.button}
-            onPress={this._onPressNotFound.bind(this)}
-            activeOpacity={ActiveOpacityNum}>
-          <Text style={styles.text}>
-            Not Found
-          </Text>
-        </TouchableOpacity>
       </Image>
     );
   }

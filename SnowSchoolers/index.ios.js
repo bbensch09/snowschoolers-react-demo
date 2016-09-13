@@ -12,7 +12,6 @@ import Home from './components/Home';
 import BookLesson from './components/BookLesson';
 import UpdateLesson from './components/UpdateLesson';
 import LessonDetails from './components/LessonDetails';
-import NotFound from './components/NotFound';
 
 class SnowSchoolers extends Component {
   // Define all the routes
@@ -35,10 +34,6 @@ class SnowSchoolers extends Component {
       case 'lessondetails':
         component = <LessonDetails navigator={navigator} style={styles} />
         break;
-
-      case 'notfound':
-      default:
-        component = <NotFound navigator={navigator} style={styles} />
     }
 
     return component;

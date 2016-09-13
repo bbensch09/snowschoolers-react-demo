@@ -9,9 +9,53 @@ import {
 } from 'react-native';
 
 export default class LessonDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      lessonType: '',
+      mountain: '',
+      lessonDate: new Date().toISOString().slice(0, 10),
+      timeZoneOffsetInHours: "",//timezone
+      slot: '',
+      lessonLength: '', // this is different from the one in BookLesson!
+      startTime: '',
+      students: [],
+      lessonLevel: '',
+      lessonObjectives: '',
+      agree: false,
+      modalVisible: false,
+      activeModal: 'lessonType'
+    };
+  }
+
   _onPressGoBack() {
     this.props.navigator.pop();
   }
+
+  componentWillMount() {
+    var lessonId = this.props.lessonId;
+    // if no lesson id was given, set it to 1
+    if (!lessonId) { lessonId = 1; }
+
+    fetch('http://localhost:3000/lessons/' + lessonId)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        // Update the state to reflect the data in the backend
+        this.setState({
+          lessonType: responseJson.activity,
+          mountain: responseJson.location,
+          lessonDate: "2016-08-18",
+          slot: "Morning"
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -54,7 +98,7 @@ export default class LessonDetails extends Component {
         <Text style={styles.lessonDetails}>Student <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
         <Text></Text>
 
-        </View>        
+        </View>
 
         <TouchableOpacity
           onPress={this._onPressGoBack.bind(this)}
