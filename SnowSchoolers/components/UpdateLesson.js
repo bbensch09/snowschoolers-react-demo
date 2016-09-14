@@ -39,27 +39,40 @@ class UpdateLesson extends Component {
     this.props.navigator.pop();
   }
   componentWillMount() {
-    console.log(this.props);
     var lessonId = this.props.lessonId;
     // if no lesson id was given, set it to 1
     if (!lessonId) { lessonId = 1; }
 
-    fetch('http://localhost:3000/lessons/' + lessonId)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
+    // fetch('http://localhost:3000/lessons/' + lessonId)
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     console.log(responseJson);
+    //
+    //     // Update the state to reflect the data in the backend
+        // this.setState({
+        //   lessonType: responseJson.activity,
+        //   mountain: responseJson.location,
+        //   lessonDate: "2016-08-18",
+        //   slot: "Morning"
+        // });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
 
-        // Update the state to reflect the data in the backend
-        this.setState({
-          lessonType: responseJson.activity,
-          mountain: responseJson.location,
-          lessonDate: "2016-08-18",
-          slot: "Morning"
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // Destructre array of lessons from data object
+    const { lessons } = this.props.data;
+    //const lastCreatedLesson = lessons[lessons.length - 1];
+    // Retrieve the lesson just created
+    const lastCreatedLesson = lessons.filter(lesson => lesson.id === this.props.lessonId)[0];
+
+    // Update the current state to reflect the data submitted from previous view
+    this.setState({
+      lessonType: lastCreatedLesson.activity,
+      mountain: lastCreatedLesson.location,
+      lessonDate: "2016-08-18",
+      slot: "Morning"
+    });
   }
   _onPressSubmit() {
     console.log("UpdateLesson: _onPressSubmit()");
@@ -67,34 +80,56 @@ class UpdateLesson extends Component {
     // (should it be made into a state property?)
     var lessonId = this.props.lessonId;
 
-    fetch('http://localhost:3000/lessons/' + lessonId, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        activity: this.state.lessonType,
-        location: this.state.mountain,
-        lesson_time_id: 1,
-        ability_level: this.state.lessonLevel,
-        objectives: this.state.lessonObjectives,
-        terms_accepted: this.state.agree,
-        start_time: this.state.startTime,
-        instructor_id: 1,
-      })
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
+    // fetch('http://localhost:3000/lessons/' + lessonId, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     activity: this.state.lessonType,
+    //     location: this.state.mountain,
+    //     lesson_time_id: 1,
+    //     ability_level: this.state.lessonLevel,
+    //     objectives: this.state.lessonObjectives,
+    //     terms_accepted: this.state.agree,
+    //     start_time: this.state.startTime,
+    //     instructor_id: 1,
+    //   })
+    // })
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     console.log(responseJson);
+    //
+    //     this.props.navigator.push({
+    //       id: 'home'
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
 
-        this.props.navigator.push({
-          id: 'home'
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const { lessons } = this.props.data;
+    // Get the last created lesson in the array
+    //let lastCreatedLesson = lessons[lessons.length - 1];
+    let lastCreatedLesson = lessons.filter(lesson => lesson.id === this.props.lessonId)[0];
+    lastCreatedLessonIndex = lessons.indexOf(lastCreatedLesson);
+
+    // Update the lesson information
+    lessons[lastCreatedLessonIndex] = Object.assign({}, lastCreatedLesson, {
+      activity: this.state.lessonType,
+      location: this.state.mountain,
+      lesson_time_id: 1,
+      ability_level: this.state.lessonLevel,
+      objectives: this.state.lessonObjectives,
+      terms_accepted: this.state.agree,
+      start_time: this.state.startTime,
+      instructor_id: 1,
+    });
+
+    this.props.navigator.push({
+      id: 'home'
+    });
   }
   setModalVisible(visible, pickerType) {
     if (pickerType) {
