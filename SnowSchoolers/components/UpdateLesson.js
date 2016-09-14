@@ -349,7 +349,7 @@ class UpdateLesson extends Component {
           />
 
           <SCButton
-            label="Go Back"
+            label="Previous"
             color="success"
             onPress={this._onPressGoBack.bind(this)}
           />

@@ -210,13 +210,13 @@ export default class BookLesson extends Component {
           </Modal>
 
           <SCButton
-            label='Book Lesson'
+            label='Next'
             color='info'
             onPress={this._onPressSubmit.bind(this)}
           />
 
           <SCButton
-            label='Go Back'
+            label='Cancel'
             color='info'
             onPress={this._onPressGoBack.bind(this)}
           />
