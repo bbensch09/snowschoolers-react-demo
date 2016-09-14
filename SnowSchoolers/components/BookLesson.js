@@ -43,36 +43,57 @@ export default class BookLesson extends Component {
     return debugState;
   }
   _onPressSubmit() {
-    console.log("making POST req to make lesson. . . ");
-    fetch('http://localhost:3000/lessons', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        activity: this.state.lessonType,
-        location: this.state.mountain,
-        lesson_time_id: 1,
-        instructor_id: 1
-      })
-    }).then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson);
+    // console.log("making POST req to make lesson. . . ");
+    // fetch('http://localhost:3000/lessons', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+      // body: JSON.stringify({
+      //   activity: this.state.lessonType,
+      //   location: this.state.mountain,
+      //   lesson_time_id: 1,
+      //   instructor_id: 1
+      // })
+    // }).then((response) => response.json())
+    // .then((responseJson) => {
+    //   console.log(responseJson);
+    //
+    //   // the fake backend returns back the object with id included of the
+    //   // from the thing you have just submitted
+    //   var newLessonId = responseJson.id;
+    //
+      // this.props.navigator.push({
+      //   id: 'updatelesson',
+      //   passProps: {
+      //     lessonId: newLessonId, // pass the lesson id to the next component via props
+      //   }
+      // });
+    // })
+    // .catch((error) => {
+    //   console.error(error);
+    // });
 
-      // the fake backend returns back the object with id included of the
-      // from the thing you have just submitted
-      var newLessonId = responseJson.id;
+    // Destructure lessons from the data object
+    const { lessons } = this.props.data;
 
-      this.props.navigator.push({
-        id: 'updatelesson',
-        passProps: {
-          lessonId: newLessonId, // pass the lesson id to the next component via props
-        }
-      });
-    })
-    .catch((error) => {
-      console.error(error);
+    // generate a fake id based on the number of secs of current date
+    const newLessonId = Date.now();
+
+    lessons.push({
+      id: newLessonId,
+      activity: this.state.lessonType,
+      location: this.state.mountain,
+      lesson_time_id: 1,
+      instructor_id: 1
+    });
+
+    this.props.navigator.push({
+      id: 'updatelesson',
+      passProps: {
+        lessonId: newLessonId, // pass the lesson id to the next component via props
+      }
     });
 
   }
