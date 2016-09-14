@@ -89,7 +89,7 @@ class UpdateLesson extends Component {
         console.log(responseJson);
 
         this.props.navigator.push({
-          id: 'lessondetails'
+          id: 'home'
         });
       })
       .catch((error) => {
@@ -218,7 +218,6 @@ class UpdateLesson extends Component {
           <Text style={styles.heading}>
             Update Your Lesson
           </Text>
-          <Text style={styles.heading2}>Basic <Text style={{fontWeight: 'bold'}}>Info</Text></Text>
 
           <Modal
             animationType={"slide"}
@@ -271,30 +270,6 @@ class UpdateLesson extends Component {
             value={this.state.lessonLength}
             onChangeText={(text) => this.setState({lessonLength: text})}
           />*/}
-
-          <TouchableHighlight
-            style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonType')}>
-            <Text>{this.state.lessonType ? this.state.lessonType : 'Lesson Type'}</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'mountain')}>
-            <Text>{this.state.mountain ? this.state.mountain : 'Mountain'}</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'lessonDate')}>
-            <Text>{this.state.lessonDate ? this.state.lessonDate : 'Date'}</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight
-            style={[styles.inputText, styles.formControl]}
-            onPress={() => this.setModalVisible(!this.state.modalVisible, 'slot')}>
-            <Text>{this.state.slot ? this.state.slot : 'Slot'}</Text>
-          </TouchableHighlight>
 
           <Text style={styles.controlLabel}>Start Time</Text>
           <SCButton
