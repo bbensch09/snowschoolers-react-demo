@@ -13,6 +13,9 @@ import BookLesson from './components/BookLesson';
 import UpdateLesson from './components/UpdateLesson';
 import LessonDetails from './components/LessonDetails';
 
+// Dummy data so you don't need to call upon a backend
+import DB_DATA from './db_data';
+
 class SnowSchoolers extends Component {
   // Define all the routes
   renderScene(route, navigator) {
@@ -20,15 +23,15 @@ class SnowSchoolers extends Component {
 
     switch(route.id) {
       case 'home':
-        component = <Home navigator={navigator} style={styles} />
+        component = <Home navigator={navigator} style={styles} data={DB_DATA} />
         break;
 
       case 'booklesson':
-        component = <BookLesson navigator={navigator} style={styles} />
+        component = <BookLesson navigator={navigator} style={styles} data={DB_DATA} />
         break;
 
       case 'updatelesson':
-        component = <UpdateLesson navigator={navigator} style={styles} {...route.passProps} />
+        component = <UpdateLesson navigator={navigator} style={styles} {...route.passProps} data={DB_DATA} />
         break;
 
       case 'lessondetails':
