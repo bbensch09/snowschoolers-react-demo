@@ -251,7 +251,7 @@ class UpdateLesson extends Component {
       <View style={[this.props.style.container, { backgroundColor: 'rgba(222, 250, 250, 1)' }]}>
         <ScrollView style={{marginTop: 40}}>
           <Text style={styles.heading}>
-            Update Your Lesson
+            Please provide the following
           </Text>
 
           <Modal
@@ -343,10 +343,10 @@ class UpdateLesson extends Component {
 
           <View style={{flexDirection: 'row', justifyContent: 'flex-end', padding: 16}}>
             <TouchableOpacity
-              style={{width: 20, height: 20, backgroundColor: 'green'}}
+              style={{width: 20, height: 20, backgroundColor: 'silver', marginTop: -2, marginBottom: 50}}
               onPress={() => this.setState({agree: !this.state.agree})}
             >
-              <Text style={{ alignSelf: 'center', color: 'white', fontWeight: 'bold'}}>{this.state.agree ? 'X' : ''}</Text>
+              <Text style={{ fontSize: 17,alignSelf: 'center', color: 'blue', fontWeight: 'bold'}}>{this.state.agree ? 'X' : ''}</Text>
             </TouchableOpacity>
             <Text>I agree to the Terms and Conditions</Text>
           </View>
@@ -354,13 +354,13 @@ class UpdateLesson extends Component {
           {/* Submit Button */}
           <SCButton
             label="Submit"
-            color="success"
+            color="info"
             onPress={this._onPressSubmit.bind(this)}
           />
 
           <SCButton
             label="Previous"
-            color="success"
+            color="info"
             onPress={this._onPressGoBack.bind(this)}
           />
         </ScrollView>
@@ -383,6 +383,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 22,
     marginLeft: 12,
+    marginBottom: 20,
   },
   heading2: {
     fontSize: 16,

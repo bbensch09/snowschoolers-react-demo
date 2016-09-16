@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 20,
   },
   formControl: {
     marginLeft: 20,
