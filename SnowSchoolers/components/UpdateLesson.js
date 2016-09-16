@@ -67,12 +67,12 @@ class UpdateLesson extends Component {
     const lastCreatedLesson = lessons.filter(lesson => lesson.id === this.props.lessonId)[0];
 
     // Update the current state to reflect the data submitted from previous view
-    this.setState({
-      lessonType: lastCreatedLesson.activity,
-      mountain: lastCreatedLesson.location,
-      lessonDate: "2016-08-18",
-      slot: "Morning"
-    });
+    // this.setState({
+    //   lessonType: lastCreatedLesson.activity,
+    //   mountain: lastCreatedLesson.location,
+    //   lessonDate: "2016-08-18",
+    //   slot: "Morning"
+    // });
   }
   _onPressSubmit() {
     console.log("UpdateLesson: _onPressSubmit()");
