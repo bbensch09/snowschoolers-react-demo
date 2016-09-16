@@ -341,9 +341,9 @@ class UpdateLesson extends Component {
             onChangeText={(text) => this.setState({lessonObjectives: text})}
           />
 
-          <View style={{flexDirection: 'row', justifyContent: 'flex-end', padding: 16}}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end', padding: 16, marginTop: 20}}>
             <TouchableOpacity
-              style={{width: 20, height: 20, backgroundColor: 'silver', marginTop: -2, marginBottom: 50}}
+              style={{width: 20, height: 20, backgroundColor: 'silver', marginTop: -2, marginBottom: 30}}
               onPress={() => this.setState({agree: !this.state.agree})}
             >
               <Text style={{ fontSize: 17,alignSelf: 'center', color: 'blue', fontWeight: 'bold'}}>{this.state.agree ? 'X' : ''}</Text>

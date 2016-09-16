@@ -43,15 +43,6 @@ export default class Home extends Component {
 
         <TouchableOpacity
             style={styles.button}
-            onPress={() => this._navigate('updatelesson')}
-            activeOpacity={ActiveOpacityNum}>
-          <Text style={styles.text}>
-            Update Lesson
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-            style={styles.button}
             onPress={() => this._navigate('lessondetails')}
             activeOpacity={ActiveOpacityNum}>
           <Text style={styles.text}>
