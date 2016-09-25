@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   backButton: {
     alignSelf: 'center',
     marginTop: 20,
-    backgroundColor: 'blue',
+    backgroundColor: '#5bc0de',
     flexDirection: 'row',
     padding: 10,
     margin: 15,
